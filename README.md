@@ -211,6 +211,15 @@ Insertion
 - `o`   : Insert new command line below the current one
 - `O`   : Insert new command line above the current one
 
+Surround
+--------
+
+Just use vim `vv`
+
+Increment and Decrement
+--------
+
+Just use vim `vv`
 
 Custom Escape Key
 --------
