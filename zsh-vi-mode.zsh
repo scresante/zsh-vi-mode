@@ -1,6 +1,7 @@
 # zsh-vi-mode.zsh -- A better and friendly vi(vim) mode for Zsh
-# https://github.com/jeffreytse/zsh-vi-mode
+# https://github.com/scresante/zsh-vi-mode
 #
+# Copyright (c) 2022 Shawn Cresante
 # Copyright (c) 2020 Jeffrey Tse
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -188,8 +189,8 @@ command -v 'zvm_version' >/dev/null && return
 
 # Plugin information
 typeset -gr ZVM_NAME='zsh-vi-mode'
-typeset -gr ZVM_DESCRIPTION='💻 A better and friendly vi(vim) mode plugin for ZSH.'
-typeset -gr ZVM_REPOSITORY='https://github.com/jeffreytse/zsh-vi-mode'
+typeset -gr ZVM_DESCRIPTION='A better and friendlier vi mode plugin for ZSH.'
+typeset -gr ZVM_REPOSITORY='https://github.com/scresante/zsh-vi-mode'
 typeset -gr ZVM_VERSION='0.8.5'
 
 # Plugin initial status
