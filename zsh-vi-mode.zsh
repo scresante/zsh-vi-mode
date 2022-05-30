@@ -67,10 +67,10 @@
 # using legacy undo behavior in vi insert mode
 #
 # ZVM_VI_HIGHLIGHT_FOREGROUND:
-# the behavior of highlight foreground (surrounds, visual-line, etc) in vi mode
+# the behavior of highlight foreground (visual-line, etc) in vi mode
 #
 # ZVM_VI_HIGHLIGHT_BACKGROUND:
-# the behavior of highlight background (surrounds, visual-line, etc) in vi mode
+# the behavior of highlight background (visual-line, etc) in vi mode
 #
 # ZVM_VI_HIGHLIGHT_EXTRASTYLE:
 # the behavior of highlight extra style (i.e. bold, underline) in vi mode
@@ -81,34 +81,6 @@
 #   ZVM_VI_HIGHLIGHT_BACKGROUND=red             # Color name
 #   ZVM_VI_HIGHLIGHT_BACKGROUND=#ff0000         # Hex value
 #   ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline  # bold and underline
-#
-# ZVM_VI_SURROUND_BINDKEY
-# the key binding mode for surround operating (default is 'classic')
-#
-# 1. 'classic' mode (verb->s->surround):
-#   S"    Add " for visual selection
-#   ys"   Add " for visual selection
-#   cs"'  Change " to '
-#   ds"   Delete "
-#
-# 2. 's-prefix' mode (s->verb->surround):
-#   sa"   Add " for visual selection
-#   sd"   Delete "
-#   sr"'  Change " to '
-#
-# How to select surround text object?
-#   vi"   Select the text object inside the quotes
-#   va(   Select the text object including the brackets
-#
-# Then you can do any operation for the selection:
-#
-# 1. Add surrounds for text object
-#   vi" -> S[ or sa[ => "object" -> "[object]"
-#
-# 2. Delete/Yank/Change text object
-#   di( or vi( -> d
-#   ca( or va( -> c
-#   yi( or vi( -> y
 #
 # ZVM_READKEY_ENGINE
 # the readkey engine for reading and processing the key events, and the
@@ -308,7 +280,6 @@ fi
 : ${ZVM_LINE_INIT_MODE:=$ZVM_MODE_LAST}
 
 : ${ZVM_VI_INSERT_MODE_LEGACY_UNDO:=false}
-: ${ZVM_VI_SURROUND_BINDKEY:=classic}
 : ${ZVM_VI_HIGHLIGHT_BACKGROUND:=#cc0000}
 : ${ZVM_VI_HIGHLIGHT_FOREGROUND:=#eeeeee}
 : ${ZVM_VI_HIGHLIGHT_EXTRASTYLE:=default}
@@ -1258,7 +1229,6 @@ function zvm_default_handler() {
         [vV]c) zvm_vi_change;;
         [vV]d) zvm_vi_delete;;
         [vV]y) zvm_vi_yank;;
-        [vV]S) zvm_change_surround S;;
         [cdyvV]*) zvm_range_handler "${keys}${extra_keys}";;
         *)
           for ((i=0;i<$#keys;i++)) do
