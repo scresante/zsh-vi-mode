@@ -92,11 +92,22 @@ ZSH: >= 5.1.0
 
 ## 🛠️ Installation
 
-#### General  
+#### General
   
-Use your plugin manager. RTFM for instructions.
+Clone this repository somewhere (`somewhere=${ZDOTDIR:-$HOME/.config/zsh}/zsh-vi-mode` for example)
 
-Or clone it somewhere and put`source $somewhere/zsh-vi-mode.plugin.zsh` in your zshrc.
+```shell
+git clone https://github.com/scresante/zsh-vi-mode.git $somewhere
+```
+Then source it in your `.zshrc`
+
+```shell
+source $somewhere/zsh-vi-mode.plugin.zsh
+```
+
+#### Plugin managers
+  
+What is a "plugin manager"? Just source it.
 
 #### As an [Oh My Zsh!](https://github.com/robbyrussell/oh-my-zsh) custom plugin
 
@@ -130,16 +141,6 @@ Source it as above in general, like a regular user.
 
 Source it as above in general, like a regular user.  
 
-Clone this repository somewhere (`somewhere=${ZDOTDIR:-$HOME/.config/zsh}/zsh-vi-mode` for example)
-
-```shell
-git clone https://github.com/scresante/zsh-vi-mode.git $somewhere
-```
-Then source it in your `.zshrc` (or `.bashrc`)
-
-```shell
-source $somewhere/zsh-vi-mode.plugin.zsh
-```
 
 ## 📚 Usage
 
