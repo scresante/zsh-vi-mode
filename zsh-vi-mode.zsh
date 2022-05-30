@@ -303,7 +303,6 @@ zvm_after_lazy_keybindings_commands=()
 
 # All the handlers for switching keyword
 zvm_switch_keyword_handlers=(
-  zvm_switch_number
   zvm_switch_boolean
   zvm_switch_operator
 )
@@ -2065,184 +2064,6 @@ function zvm_switch_keyword() {
   done
 }
 
-# Switch number keyword
-function zvm_switch_number {
-  local word=$1
-  local increase=${2:-true}
-  local result= bpos= epos=
-
-  # Hexadecimal
-  if [[ $word =~ [^0-9]?(0[xX][0-9a-fA-F]*) ]]; then
-    local number=${match[1]}
-    local prefix=${number:0:2}
-    bpos=$((mbegin-1)) epos=$mend
-
-    # Hexadecimal cases:
-    #
-    # 1. Increment:
-    # 0xDe => 0xdf
-    # 0xdE => 0xDF
-    # 0xde0 => 0xddf
-    # 0xffffffffffffffff => 0x0000000000000000
-    # 0X9 => 0XA
-    # 0Xdf => 0Xe0
-    #
-    # 2. Decrement:
-    # 0xdE0 => 0xDDF
-    # 0xffFf0 => 0xfffef
-    # 0xfffF0 => 0xFFFEF
-    # 0x0 => 0xffffffffffffffff
-    # 0X0 => 0XFFFFFFFFFFFFFFFF
-    # 0Xf => 0Xe
-
-    local lower=true
-    if [[ $number =~ [A-Z][0-9]*$ ]]; then
-      lower=false
-    fi
-
-    # Fix the number truncated after 15 digits issue
-    if (( $#number > 17 )); then
-      local d=$(($#number - 15))
-      local h=${number:0:$d}
-      number="0x${number:$d}"
-    fi
-
-    local p=$(($#number - 2))
-
-    if $increase; then
-      if (( $number == 0x${(l:15::f:)} )); then
-        h=$(([##16]$h+1))
-        h=${h: -1}
-        number=${(l:15::0:)}
-      else
-        h=${h:2}
-        number=$(([##16]$number + 1))
-      fi
-    else
-      if (( $number == 0 )); then
-        if (( ${h:-0} == 0 )); then
-          h=f
-        else
-          h=$(([##16]$h-1))
-          h=${h: -1}
-        fi
-        number=${(l:15::f:)}
-      else
-        h=${h:2}
-        number=$(([##16]$number - 1))
-      fi
-    fi
-
-    # Padding with zero
-    if (( $#number < $p )); then
-      number=${(l:$p::0:)number}
-    fi
-
-    result="${h}${number}"
-
-    # Transform the case
-    if $lower; then
-      result="${(L)result}"
-    fi
-
-    result="${prefix}${result}"
-
-  # Binary
-  elif [[ $word =~ [^0-9]?(0[bB][01]*) ]]; then
-    # Binary cases:
-    #
-    # 1. Increment:
-    # 0b1 => 0b10
-    # 0x1111111111111111111111111111111111111111111111111111111111111111 =>
-    # 0x0000000000000000000000000000000000000000000000000000000000000000
-    # 0B0 => 0B1
-    #
-    # 2. Decrement:
-    # 0b1 => 0b0
-    # 0b100 => 0b011
-    # 0B010 => 0B001
-    # 0b0 =>
-    # 0x1111111111111111111111111111111111111111111111111111111111111111
-
-    local number=${match[1]}
-    local prefix=${number:0:2}
-    bpos=$((mbegin-1)) epos=$mend
-
-    # Fix the number truncated after 63 digits issue
-    if (( $#number > 65 )); then
-      local d=$(($#number - 63))
-      local h=${number:0:$d}
-      number="0b${number:$d}"
-    fi
-
-    local p=$(($#number - 2))
-
-    if $increase; then
-      if (( $number == 0b${(l:63::1:)} )); then
-        h=$(([##2]$h+1))
-        h=${h: -1}
-        number=${(l:63::0:)}
-      else
-        h=${h:2}
-        number=$(([##2]$number + 1))
-      fi
-    else
-      if (( $number == 0b0 )); then
-        if (( ${h:-0} == 0 )); then
-          h=1
-        else
-          h=$(([##2]$h-1))
-          h=${h: -1}
-        fi
-        number=${(l:63::1:)}
-      else
-        h=${h:2}
-        number=$(([##2]$number - 1))
-      fi
-    fi
-
-    # Padding with zero
-    if (( $#number < $p )); then
-      number=${(l:$p::0:)number}
-    fi
-
-    result="${prefix}${number}"
-
-  # Decimal
-  elif [[ $word =~ ([-+]?[0-9]+) ]]; then
-    # Decimal cases:
-    #
-    # 1. Increment:
-    # 0 => 1
-    # 99 => 100
-    #
-    # 2. Decrement:
-    # 0 => -1
-    # 10 => 9
-    # aa1230xa => aa1231xa
-    # aa1230bb => aa1231bb
-    # aa123a0bb => aa124a0bb
-
-    local number=${match[1]}
-    bpos=$((mbegin-1)) epos=$mend
-
-    if $increase; then
-      result=$(($number + 1))
-    else
-      result=$(($number - 1))
-    fi
-
-    # Check if need the plus sign prefix
-    if [[ ${word:$bpos:1} == '+' ]]; then
-      result="+${result}"
-    fi
-  fi
-
-  if [[ $result ]]; then
-    echo $result $bpos $epos
-  fi
-}
-
 # Switch boolean keyword
 function zvm_switch_boolean() {
   local word=$1
@@ -2280,7 +2101,6 @@ function zvm_switch_boolean() {
 
   echo $result $bpos $epos
 }
-
 
 # Switch operator keyword
 function zvm_switch_operator() {
