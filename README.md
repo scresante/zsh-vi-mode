@@ -144,7 +144,11 @@ Source it as above in general, like a regular user.
 
 ## 📚 Usage
 
-  TODO: edit from where 
+
+# Danger, adventurer!
+## the following territory is uncharted
+### do not believe anything you read past here
+
 Use `ESC` or `CTRL-[` to enter `Normal mode`.
 
 But some people may like the custom escape key such as `jj`, `jk` and so on,
