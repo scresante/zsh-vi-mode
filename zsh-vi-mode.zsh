@@ -551,7 +551,7 @@ function zvm_bindkey() {
     return
   fi
 
-  # Hanle the keybinding of NEX readkey engine
+  # Handle the keybinding of NEX readkey engine
   if [[ $ZVM_READKEY_ENGINE == $ZVM_READKEY_ENGINE_NEX ]]; then
     # Get the first key (especially check if ctrl characters)
     if [[ $#keys -gt 1 && "${keys:0:1}" == '^' ]]; then
