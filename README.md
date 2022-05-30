@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/scresante/zsh-vi-mode">
-    <img alt="vi-mode →~ zsh" src="https://user-images.githubusercontent.com/9413601/103399068-46bfcb80-4b7a-11eb-8741-86cff3d85a69.png" width="600">
+    <img alt="vi-mode →~ zsh" src="https://user-images.githubusercontent.com/9413601/103399068-46bfcb80-4b7a-11eb-8741-86cff3d85a69.png" width="200">
   </a>
   <p> A better and friendlier vi mode plugin for ZSH.  </p>
   <p> Largely based on original work by jeffreytse but with needless piles of cruft and bloat *removed*. </p>
@@ -12,13 +12,13 @@
 
 
 <h4 align="center">
-  <a href="https://www.zsh.org/" target="_blank"><code>ZSH</code></a> plugin for Agnosticism.
+  <a href="https://www.zsh.org/" target="_blank"><code>ZSH</code></a> plugin for Catholics and other purists.
 </h4>
 
 <p align="center">
 
-  <a href="https://github.com/jeffreytse/zsh-vi-mode/releases">
-    <img src="https://img.shields.io/github/v/release/jeffreytse/zsh-vi-mode?color=brightgreen"
+  <a href="https://github.com/scresante/zsh-vi-mode/releases">
+    <img src=""
       alt="Release Version" />
   </a>
 
@@ -41,12 +41,11 @@
 
 <div align="center">
   <sub>Built with ❤︎ by
+  <a href="https://github.com/scresante">scresante</a> and  
   <a href="https://jeffreytse.net">jeffreytse</a> and
   <a href="https://github.com/jeffreytse/zsh-vi-mode/graphs/contributors">contributors </a>
 </div>
 <br>
-
-<img alt="Zsh Vi-mode Demo" src="https://user-images.githubusercontent.com/9413601/105746868-f3734a00-5f7a-11eb-8db5-22fcf50a171b.gif" />
 
 ## 🤔 Why ZVM?
 
