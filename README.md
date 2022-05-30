@@ -1,8 +1,9 @@
 <div align="center">
-  <a href="https://github.com/jeffreytse/zsh-vi-mode">
+  <a href="https://github.com/scresante/zsh-vi-mode">
     <img alt="vi-mode →~ zsh" src="https://user-images.githubusercontent.com/9413601/103399068-46bfcb80-4b7a-11eb-8741-86cff3d85a69.png" width="600">
   </a>
-  <p> 💻 A better and friendly vi(vim) mode plugin for ZSH.  </p>
+  <p> A better and friendlier vi mode plugin for ZSH.  </p>
+  <p> Largely based on original work by jeffreytse but with needless piles of cruft and bloat *removed*. </p>
 
   <br> <h1>⚒️  Zsh Vi Mode ⚒️</h1>
 
@@ -24,26 +25,6 @@
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-brightgreen.svg"
       alt="License: MIT" />
-  </a>
-
-  <a href="">
-    <img src=""
-      alt="" />
-  </a>
-
-  <a href="https://liberapay.com/jeffreytse">
-    <img src="http://img.shields.io/liberapay/goal/jeffreytse.svg?logo=liberapay"
-      alt="Donate (Liberapay)" />
-  </a>
-
-  <a href="https://patreon.com/jeffreytse">
-    <img src="https://img.shields.io/badge/support-patreon-F96854.svg?style=flat-square"
-      alt="Donate (Patreon)" />
-  </a>
-
-  <a href="https://ko-fi.com/jeffreytse">
-    <img height="20" src="https://www.ko-fi.com/img/githubbutton_sm.svg"
-      alt="Donate (Ko-fi)" />
   </a>
 
 </p>
@@ -73,18 +54,16 @@ Maybe you have experienced the default Vi mode in Zsh, after turning on
 the default Vi mode, you gradually found that it had many problems, some
 features were not perfect or non-existent, and some behaviors even were
 different from the native Vi(Vim) mode.
-
+  
 Although the default Vi mode was a bit embarrassing and unpleasant, you
 kept on using it and gradually lost your interest on it after using for
 a period of time. Eventually, you disappointedly gave up.
-
-You never think of the Vi mode for a long time, one day you accidentally
-discovered this plugin, you read here and realize that this plugin is to
-solve the above problems and make you fall in love to Vi mode again. A
-smile suddenly appeared on your face like regaining a good life.
-
-> If winter comes, can spring be far behind?
-
+  
+Then you installed the original version of this plugin and realized things
+only got worse, because the author tried to do way too much, instead of 
+doing the minimal: only writing workarounds for where `bindkey -v` breaks.
+  
+This fork is meant to fix that, by removing bloat and giving power back to the user.
 
 ## ✨ Features
 
@@ -95,13 +74,18 @@ smile suddenly appeared on your face like regaining a good life.
 - 🧮 Cursor movement (Navigation).
 - 📝 Insert & Replace (Insert mode).
 - 💡 Text Objects (A word, inner word, etc.).
-- 🔎 Searching history.
+~~- 🔎 Searching history.~~
+  wontdo: is builtin to zsh
 - ❇️  Undo, Redo, Cut, Copy, Paste, and Delete.
-- 🪐 Better surrounds functionality (Add, Replace, Delete, Move Around, and Highlight).
-- 🧽 Switch keywords (Increase/Decrease Number, Boolean, Weekday, Month, etc.).
+~~- 🪐 Better surrounds functionality (Add, Replace, Delete, Move Around, and Highlight).~~
+  wontdo: bloat
+~~- 🧽 Switch keywords (Increase/Decrease Number, Boolean, Weekday, Month, etc.).~~
+  wontdo: bloat
 - ⚙️  Better functionality in command mode (**In progress**).
-- 🪀 Repeating command such as `10p` and `4fa` (**In progress**).
-- 📒 System clipboard (**In progress**).
+~~- 🪀 Repeating command such as `10p` and `4fa` (**In progress**).~~
+  wontdo: in progress = bloat
+~~- 📒 System clipboard (**In progress**).~~
+  wontdo: use tmux or whatever zsh builtins you can make
 
 ## 💼 Requirements
 
@@ -109,40 +93,11 @@ ZSH: >= 5.1.0
 
 ## 🛠️ Installation
 
-#### Using [Antigen](https://github.com/zsh-users/antigen)
+#### General  
+  
+Use your plugin manager. RTFM for instructions.
 
-Bundle `zsh-vi-mode` in your `.zshrc`
-
-```shell
-antigen bundle jeffreytse/zsh-vi-mode
-```
-
-#### Using [zplug](https://github.com/b4b4r07/zplug)
-Load `zsh-vi-mode` as a plugin in your `.zshrc`
-
-```shell
-zplug "jeffreytse/zsh-vi-mode"
-```
-
-#### Using [zgen](https://github.com/tarjoilija/zgen)
-
-Include the load command in your `.zshrc`
-
-```shell
-zgen load jeffreytse/zsh-vi-mode
-```
-
-#### Using [zinit](https://github.com/zdharma-continuum/zinit)
-
-Include the load command in your `.zshrc`
-
-```shell
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
-```
-
-Note: the use of `depth=1` ice is optional, other types of ice are neither
-recommended nor officially supported by this plugin.
+Or clone it somewhere and put`source $somewhere/zsh-vi-mode.plugin.zsh` in your zshrc.
 
 #### As an [Oh My Zsh!](https://github.com/robbyrussell/oh-my-zsh) custom plugin
 
@@ -160,14 +115,6 @@ plugins+=(zsh-vi-mode)
 
 Keep in mind that plugins need to be added before `oh-my-zsh.sh` is sourced.
 
-#### Using [Antibody](https://getantibody.github.io/)
-
-Add `zsh-vi-mode` to your plugins file (e.g. `~/.zsh_plugins.txt`)
-
-```shell
-jeffreytse/zsh-vi-mode
-```
-
 #### Using [Homebrew](https://brew.sh/)
 
 For Homebrew users, you can install it through the following command
@@ -178,67 +125,26 @@ brew install zsh-vi-mode
 
 #### Arch Linux (AUR)
 
-For Arch Linux users, you can install it through the following command
-
-```shell
-yay -S zsh-vi-mode
-```
-
-or the latest update (unstable)
-
-```shell
-yay -S zsh-vi-mode-git
-```
-
-Then source it in your `.zshrc` (or `.bashrc`)
-
-```shell
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-```
+Source it as above in general, like a regular user.  
 
 #### Nix
 
-For users of Nix, as of [e7e3480530b34a9fe8cb52963ec2cf66e6707e15](https://github.com/NixOS/nixpkgs/commit/e7e3480530b34a9fe8cb52963ec2cf66e6707e15) you can source the plugin through the following configuration
+Source it as above in general, like a regular user.  
+
+Clone this repository somewhere (`somewhere=${ZDOTDIR:-$HOME/.config/zsh}/zsh-vi-mode` for example)
 
 ```shell
-programs = {
-  zsh = {
-    interactiveShellInit = ''
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-    '';
-  };
-};
-```
-  
-Or if you prefer `home-manager`:
-
-```shell
-home-manager.users.[your username] = { pkgs, ... }: {
-  programs = {
-    zsh = {
-      initExtra = ''
-        source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-      '';
-    };
-  };
-};
-```
-
-#### Manually
-
-Clone this repository somewhere (`$HOME/.zsh-vi-mode` for example)
-
-```shell
-git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh-vi-mode
+git clone https://github.com/scresante/zsh-vi-mode.git $somewhere
 ```
 Then source it in your `.zshrc` (or `.bashrc`)
 
 ```shell
-source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
+source $somewhere/zsh-vi-mode.plugin.zsh
 ```
 
 ## 📚 Usage
 
+  TODO: edit from where 
 Use `ESC` or `CTRL-[` to enter `Normal mode`.
 
 But some people may like the custom escape key such as `jj`, `jk` and so on,
