@@ -2710,11 +2710,6 @@ function zvm_init() {
   key[PageUp]=${terminfo[kpp]}
   key[PageDown]=${terminfo[knp]}
 # setup key accordingly
-# [[ -n "${key[Home]}"     ]]  && bindkey  "${key[Home]}"     beginning-of-line
-# bindkey  "${key[Home]}"     beginning-of-line
-# bindkey  "${key[End]}"      end-of-line
-# bindkey -M vicmd "${key[Home]}"      beginning-of-line
-# bindkey -M vicmd "${key[End]}"      end-of-line
   zvm_bindkey viins "${key[Home]}"  beginning-of-line
   zvm_bindkey vicmd "${key[Home]}"  beginning-of-line
   zvm_bindkey viins "${key[End]}"  end-of-line
